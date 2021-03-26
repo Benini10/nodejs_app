@@ -1,0 +1,7 @@
+enum StatusEnum {
+  ACTIVE
+  PENDING
+  BLOCKED
+  FAILED
+  INACTIVE
+}

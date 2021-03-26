@@ -1,0 +1,38 @@
+type Company {
+  id: ID!
+  name: String!
+  logo: String
+  slogan: String
+  phone: String!
+  email: String
+  status: String
+  offices: [Office]
+}
+
+type Query {
+  getCompanies: [Company!]
+  getCompany(id: ID!): Company!
+}
+
+input CreateCompanyInput {
+  name: String!
+  logo: String
+  slogan: String
+  phone: String!
+  email: String
+  status: String
+}
+
+input EditCompanyInput {
+  name: String!
+  logo: String
+  slogan: String
+  phone: String!
+  email: String
+  status: String
+}
+
+type Mutation {
+  createCompany(data: CreateCompanyInput!): Company!
+  editCompany(companyId: ID!, data: EditCompanyInput!): Company!
+}

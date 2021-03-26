@@ -1,0 +1,30 @@
+type Currency {
+  id: ID!
+  name: String!
+  code: String!
+  description: String
+  status: String!
+}
+
+type Query {
+  getCurrencies: [Currency]!
+  getOneCurrency(id: Int!): Currency!
+}
+
+input CreateCurrencyInput {
+  name: String!
+  code: String!
+  description: String
+  status: String
+}
+input EditCurrencyInput {
+  name: String!
+  code: String!
+  description: String
+  status: String
+}
+
+type Mutation {
+  createCurrency(data: CreateCurrencyInput!): Currency!
+  editCurrency(currencyId: ID!, data: EditCurrencyInput!): Currency!
+}

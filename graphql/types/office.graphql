@@ -1,0 +1,36 @@
+type Office {
+  id: ID!
+  name: String!
+  address: String!
+  phone: String
+  email: String
+  status: String!
+  company: Company!
+}
+
+input CreateOfficeInput {
+  name: String!
+  address: String!
+  phone: String
+  email: String
+  status: String
+  companyId: ID!
+}
+
+input EditOfficeInput {
+  name: String!
+  address: String!
+  phone: String
+  email: String
+  status: String
+}
+
+type Query {
+  getOffices: [Office!]!
+  getOffice(id: ID!): Office!
+}
+
+type Mutation {
+  createOffice(data: CreateOfficeInput!): Office!
+  editOffice(officeId: ID!, data: EditOfficeInput!): Office!
+}

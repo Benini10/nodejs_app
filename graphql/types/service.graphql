@@ -1,0 +1,31 @@
+type Service {
+  id: Int!
+  name: String!
+  code: String!
+  status: String!
+  description: String
+}
+
+type Query {
+  getServices: [Service!]
+  getService(id: ID!): Service!
+}
+
+input CreateServiceInput {
+  name: String!
+  code: String!
+  description: String
+  status: String!
+}
+
+input EditServiceInput {
+  name: String!
+  code: String!
+  description: String
+  status: String!
+}
+
+type Mutation {
+  createService(data: CreateServiceInput!): Service!
+  editService(serviceId: ID!, data: EditServiceInput!): Service!
+}

@@ -1,0 +1,7 @@
+type Address {
+  street: String!
+}
+
+input AddressInput {
+  street: String!
+}

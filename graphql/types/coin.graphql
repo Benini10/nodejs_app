@@ -1,0 +1,34 @@
+type Coin {
+  id: ID!
+  logo: String!
+  value: String!
+  description: String
+  status: String!
+  currency: Currency!
+}
+
+input CreateCoinInput {
+  logo: String!
+  value: String!
+  description: String
+  status: String
+  currencyId: ID!
+}
+
+input EditCoinInput {
+  logo: String!
+  value: String!
+  description: String!
+  status: String
+  currencyId: ID!
+}
+
+type Query {
+  getCoins: [Coin!]!
+  getCoin(id: ID!): Coin!
+}
+
+type Mutation {
+  createCoin(data: CreateCoinInput!): Coin!
+  editCoin(coinId: ID!, data: EditCoinInput!): Coin!
+}

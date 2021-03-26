@@ -1,0 +1,26 @@
+{
+  "name": "patience",
+  "version": "1.0.0",
+  "description": "Patience de la vie",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon app"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "@graphql-tools/load-files": "^6.2.7",
+    "@graphql-tools/merge": "^6.2.10",
+    "apollo-server-express": "^2.21.0",
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "graphql": "^15.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.5.0"
+  }
+}
