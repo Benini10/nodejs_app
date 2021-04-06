@@ -1,0 +1,27 @@
+enum statusEnum {
+  WAITING
+  PENDING
+  ACTIVE
+  INACTIVE
+  BLOCK
+}
+
+type Role {
+  id: ID!
+  name: String!
+  description: String!
+  status: Boolean!
+  users: [User!]
+}
+
+type Query {
+  role(id: ID!): Role
+  roles: [Role!]!
+  rolesStatus(status: Boolean!): Role
+}
+
+type Mutation {
+  createRole(name: String, description: String, status: Boolean): Role!
+  editRole(id: ID!, name: String, description: String, status: Boolean): Role!
+  switchRole(id: ID!, status: Boolean): Role!
+}

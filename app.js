@@ -1,29 +1,29 @@
+require("dotenv").config({ path: __dirname + "/.env" });
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
-const jwt = require("express-jwt");
-
-const { typeDefs, resolvers } = require("./graphql");
-const JWT_SECRET = require("./constants");
+let schema = require("./graphql");
+const token = require("./utils/tokenized");
+const { applyMiddleware } = require("graphql-middleware");
+const { permissions } = require("./middlewares/permissions");
 
 const app = express();
-const auth = jwt({
-  secret: JWT_SECRET,
-  algorithms: ["HS256"],
-  credentialsRequired: false,
-});
-app.use(auth);
+app.disable("x-powered-by");
+
+schema = applyMiddleware(schema, permissions);
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  schema,
+  middlewares: [permissions],
   playground: {
     endpoint: "/graphql",
   },
+  context: ({ req }) => {
+    return { req };
+    //return token.getToken(req);
+  },
 });
-
 server.applyMiddleware({ app });
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log("The server started on port " + PORT);
+app.listen({ port: process.env.APP_PORT }, () => {
+  console.log("The server started on port " + process.env.APP_PORT);
+  console.log(`http://localhost:${process.env.APP_PORT}${server.graphqlPath}`);
 });

@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.Fund, { foreignKey: "officeId" });
       this.belongsTo(models.Company, { foreignKey: "companyId" });
       this.belongsToMany(
         models.Service,
@@ -25,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       status: {
         type: DataTypes.STRING,
-        defaultValue: true,
+        defaultValue: "ACTIVE",
       },
     },
     {

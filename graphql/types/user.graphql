@@ -1,0 +1,38 @@
+type AuthPayload {
+  token: String!
+}
+
+input UserInput {
+  name: String
+  email: String
+  status: Boolean
+  roleId: ID!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String
+  password: String
+  status: Boolean!
+  role: Role!
+  employee: Employee
+}
+
+type Query {
+  user(id: ID!): User
+  users: [User!]!
+}
+
+type Mutation {
+  login(email: String, password: String): AuthPayload!
+  createUser(
+    name: String!
+    email: String!
+    password: String!
+    status: Boolean
+    roleId: ID!
+  ): User!
+  editUser(id: ID!, data: UserInput): User!
+  editUserRole(id: ID!, roleId: ID!): User!
+}

@@ -1,0 +1,15 @@
+type Poste {
+  id: ID!
+  name: String!
+  status: Boolean!
+  employee: [Employee!]
+}
+
+type Query {
+  poste(id: ID!): Poste
+  postes: [Poste!]!
+}
+
+type Mutation {
+  createPoste(name: String!, status: Boolean): User
+}

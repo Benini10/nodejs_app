@@ -1,0 +1,29 @@
+type Fund {
+  id: ID!
+  code: String!
+  description: String!
+  amount: Float!
+  status: Boolean!
+  user: User
+  office: Office
+  currency: Poste
+}
+
+input CreateFundInput {
+  code: String!
+  description: String!
+  amount: Float!
+  status: Boolean!
+  user: ID!
+  office: ID!
+  currency: ID!
+}
+
+type Query {
+  fund(id: Int!): Fund
+  funds: [Fund!]!
+}
+
+type Mutation {
+  createFund(data: CreateFundInput!): Fund!
+}
